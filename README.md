@@ -28,3 +28,11 @@ REDIS_SECRET="<YOUR_REDIS_SECRET_KEY>"
 - Now run <code>npm run dev</code> in the terminal.
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Screenshots
+
+Home Page
+![image](https://github.com/ashank2603/threadit/assets/61231703/ce4ea30c-7535-437b-95df-88ffe30bf492)
+
+Post Page
+![image](https://github.com/ashank2603/threadit/assets/61231703/8ae4b816-4018-476a-8cac-1ed146fc548b)
