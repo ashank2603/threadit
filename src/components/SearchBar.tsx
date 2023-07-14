@@ -34,7 +34,7 @@ const SearchBar = () => {
 
   const debounceRequest = useCallback(() => {
     request()  
-  }, [])
+  }, [request])
 
   useOnClickOutside(commandRef, () => {
     setInput('')
@@ -43,6 +43,7 @@ const SearchBar = () => {
   return (
     <Command ref={commandRef} className='relative rounded-lg border max-w-lg z-50 overflow-visible'>
         <CommandInput 
+            isLoading={isFetching}
             value={input}
             onValueChange={(text) => {
                 setInput(text)

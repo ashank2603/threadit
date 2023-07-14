@@ -8,6 +8,7 @@ import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useEffect, useRef } from "react";
 import Post from "./Post";
+import { Loader2 } from "lucide-react";
 
 interface PostFeedProps {
     initialPosts: ExtendedPost[];
@@ -56,6 +57,7 @@ const PostFeed: React.FC<PostFeedProps> = ({ initialPosts, subredditName }) => {
                 return acc
             }, 0)
 
+            // @ts-ignore
             const currentVote = post.votes.find((vote) => vote.userId === session?.user.id)
             if (index === posts.length - 1) {
                 return (
@@ -64,13 +66,21 @@ const PostFeed: React.FC<PostFeedProps> = ({ initialPosts, subredditName }) => {
                             commentAmt={post.comments.length} 
                             post={post} 
                             subredditName={post.subreddit.name} 
+                            votesAmt={votesAmt}
+                            currentVote={currentVote}
                         />
                     </li>
                 )
             } else {
-                return <Post currentVote={currentVote} votesAmt={votesAmt} commentAmt={post.comments.length} post={post} subredditName={post.subreddit.name} />
+                return <Post key={post.id} currentVote={currentVote} votesAmt={votesAmt} commentAmt={post.comments.length} post={post} subredditName={post.subreddit.name} />
             }
         })}
+
+        {isFetchingNextPage && (
+            <li className="flex justify-center">
+                <Loader2 className="w-6 h-6 text-zinc-500 animate-spin" />
+            </li>
+        )}
     </ul>
   )
 }
